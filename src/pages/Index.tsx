@@ -63,8 +63,9 @@ const Index = () => {
           <div className="hidden md:flex gap-8">
             <a href="#home" className="text-foreground/80 hover:text-primary transition-colors">Главная</a>
             <a href="#portfolio" className="text-foreground/80 hover:text-primary transition-colors">Портфолио</a>
-            <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">Обо мне</a>
             <a href="#services" className="text-foreground/80 hover:text-primary transition-colors">Услуги</a>
+            <a href="#pricing" className="text-foreground/80 hover:text-primary transition-colors">Цены</a>
+            <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">Обо мне</a>
             <a href="#testimonials" className="text-foreground/80 hover:text-primary transition-colors">Отзывы</a>
             <a href="#contact" className="text-foreground/80 hover:text-primary transition-colors">Контакты</a>
           </div>
@@ -155,6 +156,82 @@ const Index = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-20">
                   <h3 className="text-white font-semibold text-xl">{item.title}</h3>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing" className="relative py-20 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-5xl font-bold text-center mb-4">
+            <span className="gradient-text">Цены</span>
+          </h2>
+          <p className="text-center text-foreground/60 mb-16 text-lg">Выберите подходящий пакет</p>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              {
+                name: 'Базовый',
+                price: '5 000',
+                duration: '1 час',
+                features: ['До 30 фото', 'Цветокоррекция', 'Онлайн-галерея', '7 дней на обработку']
+              },
+              {
+                name: 'Стандарт',
+                price: '8 000',
+                duration: '2 часа',
+                features: ['До 60 фото', 'Ретушь', 'Онлайн-галерея', '5 дней на обработку'],
+                popular: true
+              },
+              {
+                name: 'Премиум',
+                price: '12 000',
+                duration: '3 часа',
+                features: ['До 100 фото', 'Ретушь', 'Печатный альбом', '3 дня на обработку']
+              },
+              {
+                name: 'Полный день',
+                price: '20 000',
+                duration: '8 часов',
+                features: ['Все фото', 'Полная ретушь', 'Печатный альбом', 'Экспресс обработка']
+              }
+            ].map((plan, index) => (
+              <div
+                key={plan.name}
+                className={`glass rounded-2xl p-6 space-y-6 hover:border-primary/50 transition-all relative ${
+                  plan.popular ? 'border-primary/50 scale-105' : ''
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                {plan.popular && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary to-accent rounded-full text-sm font-semibold">
+                    Популярный
+                  </div>
+                )}
+                <div className="space-y-2">
+                  <h3 className="text-2xl font-bold">{plan.name}</h3>
+                  <div className="text-foreground/60">{plan.duration}</div>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-bold gradient-text">{plan.price}</span>
+                    <span className="text-foreground/60">₽</span>
+                  </div>
+                </div>
+                <ul className="space-y-3">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2">
+                      <Icon name="Check" size={20} className="text-primary mt-0.5 flex-shrink-0" />
+                      <span className="text-sm text-foreground/70">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button 
+                  className={`w-full ${plan.popular ? 'bg-gradient-to-r from-primary to-accent' : ''}`}
+                  variant={plan.popular ? 'default' : 'outline'}
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Выбрать
+                </Button>
               </div>
             ))}
           </div>
