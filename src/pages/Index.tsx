@@ -169,26 +169,20 @@ const Index = () => {
           </h2>
           <p className="text-center text-foreground/60 mb-16 text-lg">Выберите подходящий пакет</p>
           
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
                 name: 'Базовый',
                 price: '5 000',
                 duration: '1 час',
-                features: ['До 30 фото', 'Цветокоррекция', 'Онлайн-галерея', '7 дней на обработку']
+                features: ['До 60 фото', 'Цветокоррекция', 'Онлайн-галерея', '7 дней на обработку']
               },
               {
                 name: 'Стандарт',
                 price: '8 000',
                 duration: '2 часа',
-                features: ['До 60 фото', 'Ретушь', 'Онлайн-галерея', '5 дней на обработку'],
+                features: ['До 100 фото', 'Ретушь', 'Онлайн-галерея', '5 дней на обработку'],
                 popular: true
-              },
-              {
-                name: 'Премиум',
-                price: '12 000',
-                duration: '3 часа',
-                features: ['До 100 фото', 'Ретушь', 'Печатный альбом', '3 дня на обработку']
               }
             ].map((plan, index) => (
               <div
