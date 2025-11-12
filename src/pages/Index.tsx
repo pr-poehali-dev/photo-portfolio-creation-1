@@ -9,18 +9,12 @@ import { useToast } from '@/hooks/use-toast';
 const Index = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const scrollToSection = (sectionId: string) => {
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileMenuOpen(false);
-  };
 
   const categories = [
-    { id: 'reportage', title: 'Репортажная съёмка', icon: 'Camera' },
-    { id: 'family', title: 'Семейная съёмка', icon: 'Users' },
-    { id: 'individual', title: 'Индивидуальная съёмка', icon: 'User' },
-    { id: 'pets', title: 'Съёмка животных', icon: 'Heart' }
+    { id: 'reportage', title: 'Репортажная съёмка', icon: 'Camera', desc: 'События и эмоции' },
+    { id: 'family', title: 'Семейная съёмка', icon: 'Users', desc: 'Тёплые моменты' },
+    { id: 'individual', title: 'Индивидуальная съёмка', icon: 'User', desc: 'Ваш стиль' },
+    { id: 'pets', title: 'Съёмка животных', icon: 'Heart', desc: 'Любимые питомцы' }
   ];
 
   const portfolio = [
@@ -60,99 +54,105 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b">
+    <div className="min-h-screen bg-background">
+      <div className="fixed inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10 pointer-events-none" />
+      
+      <header className="fixed top-0 w-full glass z-50">
         <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-primary">Фотограф</h1>
+          <h1 className="text-2xl font-bold gradient-text">Фотограф</h1>
           <div className="hidden md:flex gap-8">
-            <a href="#home" className="hover:text-primary transition-colors">Главная</a>
-            <a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a>
-            <a href="#about" className="hover:text-primary transition-colors">Обо мне</a>
-            <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
-            <a href="#testimonials" className="hover:text-primary transition-colors">Отзывы</a>
-            <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
+            <a href="#home" className="text-foreground/80 hover:text-primary transition-colors">Главная</a>
+            <a href="#portfolio" className="text-foreground/80 hover:text-primary transition-colors">Портфолио</a>
+            <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">Обо мне</a>
+            <a href="#services" className="text-foreground/80 hover:text-primary transition-colors">Услуги</a>
+            <a href="#testimonials" className="text-foreground/80 hover:text-primary transition-colors">Отзывы</a>
+            <a href="#contact" className="text-foreground/80 hover:text-primary transition-colors">Контакты</a>
           </div>
-          <button
-            className="md:hidden p-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Меню"
-          >
-            <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={24} />
-          </button>
         </nav>
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t animate-fade-in">
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              <button onClick={() => scrollToSection('home')} className="text-left hover:text-primary transition-colors">Главная</button>
-              <button onClick={() => scrollToSection('portfolio')} className="text-left hover:text-primary transition-colors">Портфолио</button>
-              <button onClick={() => scrollToSection('about')} className="text-left hover:text-primary transition-colors">Обо мне</button>
-              <button onClick={() => scrollToSection('services')} className="text-left hover:text-primary transition-colors">Услуги</button>
-              <button onClick={() => scrollToSection('testimonials')} className="text-left hover:text-primary transition-colors">Отзывы</button>
-              <button onClick={() => scrollToSection('contact')} className="text-left hover:text-primary transition-colors">Контакты</button>
-            </div>
-          </div>
-        )}
       </header>
 
-      <section id="home" className="pt-32 pb-20 px-6">
+      <section id="home" className="relative pt-32 pb-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 animate-fade-in">
-              <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-                Сохраню ваши<br />
-                <span className="text-primary">особенные моменты</span>
+            <div className="space-y-8 animate-fade-in">
+              <div className="inline-block px-4 py-2 glass rounded-full text-sm">
+                ✨ 2 года опыта в фотографии
+              </div>
+              <h2 className="text-6xl md:text-7xl font-bold leading-tight">
+                Ловлю<br />
+                <span className="gradient-text">моменты</span><br />
+                жизни
               </h2>
-              <p className="text-lg text-muted-foreground">
-                Профессиональная фотосъёмка с душой. Репортажная, семейная, индивидуальная съёмка и портреты животных.
+              <p className="text-xl text-foreground/70">
+                Создаю атмосферные кадры, которые рассказывают истории. Репортажная, семейная, индивидуальная съёмка.
               </p>
-              <Button size="lg" className="mt-4" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                Забронировать съёмку
-              </Button>
+              <div className="flex gap-4">
+                <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                  Забронировать
+                </Button>
+                <Button size="lg" variant="outline" onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}>
+                  Портфолио
+                </Button>
+              </div>
             </div>
             <div className="relative animate-scale-in">
+              <div className="absolute -inset-4 bg-gradient-to-r from-primary to-accent opacity-20 blur-3xl rounded-full"></div>
               <img
                 src="https://cdn.poehali.dev/projects/e3929fd9-18b3-47b9-a4fb-beeae082a7dc/files/3eb109ed-a0a0-43c1-97d4-e3297bccf2cf.jpg"
                 alt="Фотограф"
-                className="rounded-2xl shadow-2xl w-full h-[500px] object-cover"
+                className="relative rounded-3xl shadow-2xl w-full h-[550px] object-cover border border-white/10"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="py-20 px-6 bg-secondary/30">
+      <section id="services" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Услуги</h2>
+          <h2 className="text-5xl font-bold text-center mb-16">
+            Что я <span className="gradient-text">снимаю</span>
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <Card key={category.id} className="hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer">
-                <CardContent className="p-6 text-center space-y-4">
-                  <div className="w-16 h-16 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                    <Icon name={category.icon as any} size={32} className="text-primary" />
+            {categories.map((category, index) => (
+              <div
+                key={category.id}
+                className="group glass rounded-2xl p-6 hover:border-primary/50 transition-all cursor-pointer"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="space-y-4">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <Icon name={category.icon as any} size={28} className="text-white" />
                   </div>
-                  <h3 className="font-semibold text-lg">{category.title}</h3>
-                </CardContent>
-              </Card>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">{category.title}</h3>
+                    <p className="text-sm text-foreground/60">{category.desc}</p>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="portfolio" className="py-20 px-6">
+      <section id="portfolio" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Портфолио</h2>
+          <h2 className="text-5xl font-bold text-center mb-16">
+            <span className="gradient-text">Портфолио</span>
+          </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {portfolio.map((item) => (
+            {portfolio.map((item, index) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-xl cursor-pointer aspect-square"
+                className="group relative overflow-hidden rounded-2xl cursor-pointer aspect-square"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 z-20">
                   <h3 className="text-white font-semibold text-xl">{item.title}</h3>
                 </div>
               </div>
@@ -161,107 +161,118 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-6 bg-secondary/30">
-        <div className="container mx-auto max-w-4xl text-center space-y-6">
-          <h2 className="text-4xl font-bold mb-8">Обо мне</h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Я профессиональный фотограф с более чем 5-летним опытом работы. 
-            Моя страсть — запечатлеть искренние эмоции и создать для вас воспоминания, 
-            которые будут радовать долгие годы. Работаю в репортажном стиле, 
-            где главное — естественность и атмосфера момента.
-          </p>
-          <div className="flex justify-center gap-12 pt-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">500+</div>
-              <div className="text-muted-foreground mt-2">Съёмок</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">5+</div>
-              <div className="text-muted-foreground mt-2">Лет опыта</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-primary">300+</div>
-              <div className="text-muted-foreground mt-2">Довольных клиентов</div>
+      <section id="about" className="relative py-20 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div className="glass rounded-3xl p-12 text-center space-y-8">
+            <h2 className="text-5xl font-bold mb-8">
+              Обо <span className="gradient-text">мне</span>
+            </h2>
+            <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
+              Я начинающий фотограф с двухлетним опытом работы. 
+              Моя страсть — запечатлеть искренние эмоции и создать для вас воспоминания, 
+              которые будут радовать долгие годы. Работаю в репортажном стиле, 
+              где главное — естественность и атмосфера момента.
+            </p>
+            <div className="grid md:grid-cols-3 gap-8 pt-8">
+              <div className="space-y-2">
+                <div className="text-5xl font-bold gradient-text">150+</div>
+                <div className="text-foreground/60">Съёмок</div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-5xl font-bold gradient-text">2</div>
+                <div className="text-foreground/60">Года опыта</div>
+              </div>
+              <div className="space-y-2">
+                <div className="text-5xl font-bold gradient-text">120+</div>
+                <div className="text-foreground/60">Довольных клиентов</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="testimonials" className="py-20 px-6">
+      <section id="testimonials" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Отзывы</h2>
+          <h2 className="text-5xl font-bold text-center mb-16">
+            Что говорят <span className="gradient-text">клиенты</span>
+          </h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id}>
-                <CardContent className="p-6 space-y-4">
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" size={20} className="text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground italic">"{testimonial.text}"</p>
-                  <p className="font-semibold">{testimonial.name}</p>
-                </CardContent>
-              </Card>
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={testimonial.id}
+                className="glass rounded-2xl p-6 space-y-4 hover:border-primary/50 transition-all"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex gap-1">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Icon key={i} name="Star" size={18} className="text-yellow-400 fill-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-foreground/70 italic">"{testimonial.text}"</p>
+                <p className="font-semibold text-primary">{testimonial.name}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-6 bg-secondary/30">
+      <section id="contact" className="relative py-20 px-6">
         <div className="container mx-auto max-w-2xl">
-          <h2 className="text-4xl font-bold text-center mb-12">Связаться со мной</h2>
-          <Card>
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    placeholder="Ваше имя"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    placeholder="Расскажите о желаемой съёмке"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    rows={5}
-                    required
-                  />
-                </div>
-                <Button type="submit" size="lg" className="w-full">
-                  Отправить заявку
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-          <div className="mt-12 text-center space-y-4">
-            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+          <h2 className="text-5xl font-bold text-center mb-16">
+            Давайте <span className="gradient-text">создадим</span> что-то вместе
+          </h2>
+          <div className="glass rounded-3xl p-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <Input
+                  placeholder="Ваше имя"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="bg-background/50 border-white/10"
+                  required
+                />
+              </div>
+              <div>
+                <Input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="bg-background/50 border-white/10"
+                  required
+                />
+              </div>
+              <div>
+                <Textarea
+                  placeholder="Расскажите о желаемой съёмке"
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  rows={5}
+                  className="bg-background/50 border-white/10"
+                  required
+                />
+              </div>
+              <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-accent hover:opacity-90">
+                Отправить заявку
+              </Button>
+            </form>
+          </div>
+          <div className="mt-12 flex justify-center gap-8">
+            <a href="mailto:photo@example.com" className="flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors">
               <Icon name="Mail" size={20} />
               <span>photo@example.com</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-muted-foreground">
+            </a>
+            <a href="tel:+79991234567" className="flex items-center gap-2 text-foreground/70 hover:text-primary transition-colors">
               <Icon name="Phone" size={20} />
               <span>+7 (999) 123-45-67</span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
 
-      <footer className="py-8 px-6 border-t">
-        <div className="container mx-auto text-center text-muted-foreground">
-          <p>© 2024 Фотограф. Все права защищены.</p>
+      <footer className="relative py-8 px-6 border-t border-white/10">
+        <div className="container mx-auto text-center text-foreground/50">
+          <p>© 2024 Фотограф. Создано с любовью к искусству.</p>
         </div>
       </footer>
     </div>
