@@ -9,6 +9,12 @@ import { useToast } from '@/hooks/use-toast';
 const Index = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
+  };
 
   const categories = [
     { id: 'reportage', title: 'Репортажная съёмка', icon: 'Camera' },
@@ -66,7 +72,26 @@ const Index = () => {
             <a href="#testimonials" className="hover:text-primary transition-colors">Отзывы</a>
             <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
           </div>
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Меню"
+          >
+            <Icon name={mobileMenuOpen ? 'X' : 'Menu'} size={24} />
+          </button>
         </nav>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t animate-fade-in">
+            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+              <button onClick={() => scrollToSection('home')} className="text-left hover:text-primary transition-colors">Главная</button>
+              <button onClick={() => scrollToSection('portfolio')} className="text-left hover:text-primary transition-colors">Портфолио</button>
+              <button onClick={() => scrollToSection('about')} className="text-left hover:text-primary transition-colors">Обо мне</button>
+              <button onClick={() => scrollToSection('services')} className="text-left hover:text-primary transition-colors">Услуги</button>
+              <button onClick={() => scrollToSection('testimonials')} className="text-left hover:text-primary transition-colors">Отзывы</button>
+              <button onClick={() => scrollToSection('contact')} className="text-left hover:text-primary transition-colors">Контакты</button>
+            </div>
+          </div>
+        )}
       </header>
 
       <section id="home" className="pt-32 pb-20 px-6">
