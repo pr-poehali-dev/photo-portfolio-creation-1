@@ -79,7 +79,7 @@ const Index = () => {
               <div className="inline-block px-4 py-2 glass rounded-full text-sm">
                 ✨ 2 года опыта в фотографии
               </div>
-              <h2 className="text-6xl md:text-7xl font-bold leading-tight">
+              <h2 className="text-5xl md:text-6xl font-medium leading-tight">
                 Ловлю<br />
                 <span className="gradient-text">моменты</span><br />
                 жизни
@@ -110,7 +110,7 @@ const Index = () => {
 
       <section id="services" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl font-bold text-center mb-16">
+          <h2 className="text-4xl font-medium text-center mb-16">
             Что я <span className="gradient-text">снимаю</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -137,7 +137,7 @@ const Index = () => {
 
       <section id="portfolio" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl font-bold text-center mb-16">
+          <h2 className="text-4xl font-medium text-center mb-16">
             <span className="gradient-text">Портфолио</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -164,7 +164,7 @@ const Index = () => {
 
       <section id="pricing" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl font-bold text-center mb-4">
+          <h2 className="text-4xl font-medium text-center mb-4">
             <span className="gradient-text">Цены</span>
           </h2>
           <p className="text-center text-foreground/60 mb-16 text-lg">Выберите подходящий пакет</p>
@@ -229,7 +229,7 @@ const Index = () => {
       <section id="about" className="relative py-20 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="glass rounded-3xl p-12 text-center space-y-8">
-            <h2 className="text-5xl font-bold mb-8">
+            <h2 className="text-4xl font-medium mb-8">
               Обо <span className="gradient-text">мне</span>
             </h2>
             <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
@@ -258,7 +258,7 @@ const Index = () => {
 
       <section id="testimonials" className="relative py-20 px-6">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-5xl font-bold text-center mb-16">
+          <h2 className="text-4xl font-medium text-center mb-16">
             Что говорят <span className="gradient-text">клиенты</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -283,7 +283,7 @@ const Index = () => {
 
       <section id="contact" className="relative py-20 px-6">
         <div className="container mx-auto max-w-2xl">
-          <h2 className="text-5xl font-bold text-center mb-16">
+          <h2 className="text-4xl font-medium text-center mb-16">
             Давайте <span className="gradient-text">создадим</span> что-то вместе
           </h2>
           <div className="glass rounded-3xl p-8">
